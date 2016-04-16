@@ -1,7 +1,12 @@
 package org.kneelawk.kportals;
 
+import ninja.leaping.configurate.commented.CommentedConfigurationNode;
+import ninja.leaping.configurate.loader.ConfigurationLoader;
+
+import org.kneelawk.kportals.cfg.KPConfig;
 import org.kneelawk.kportals.log.KPLog;
 import org.slf4j.Logger;
+import org.spongepowered.api.config.DefaultConfig;
 import org.spongepowered.api.event.Listener;
 import org.spongepowered.api.event.game.state.GameInitializationEvent;
 import org.spongepowered.api.event.game.state.GameStoppingEvent;
@@ -13,6 +18,10 @@ import com.google.inject.Inject;
 public class KPortals {
 	private static KPortals instance;
 
+	@Inject
+	@DefaultConfig(sharedRoot = true)
+	private ConfigurationLoader<CommentedConfigurationNode> loader;
+
 	public KPortals() {
 		instance = this;
 	}
@@ -20,6 +29,7 @@ public class KPortals {
 	@Inject
 	private void setLogger(Logger log) {
 		KPLog.init(log);
+		KPConfig.init(loader);
 	}
 
 	@Listener
@@ -30,6 +40,7 @@ public class KPortals {
 	@Listener
 	public void stop(GameStoppingEvent event) {
 		KPLog.info("Stopping KPortals");
+		KPConfig.save();
 	}
 
 	public static KPortals getInstance() {
