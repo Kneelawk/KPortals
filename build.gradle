@@ -13,5 +13,5 @@ repositories {
 }
 
 dependencies {
-	compile 'org.spongepowered:spongeapi:4.1.0-20160315.153755-7'
+	compile 'org.spongepowered:spongeapi:6.0.0-20170201.184449-36'
 }
