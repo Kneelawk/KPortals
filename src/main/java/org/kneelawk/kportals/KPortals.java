@@ -4,6 +4,7 @@ import ninja.leaping.configurate.commented.CommentedConfigurationNode;
 import ninja.leaping.configurate.loader.ConfigurationLoader;
 
 import org.kneelawk.kportals.cfg.KPConfig;
+import org.kneelawk.kportals.command.KPCommands;
 import org.kneelawk.kportals.log.KPLog;
 import org.slf4j.Logger;
 import org.spongepowered.api.config.DefaultConfig;
@@ -14,7 +15,9 @@ import org.spongepowered.api.plugin.Plugin;
 
 import com.google.inject.Inject;
 
-@Plugin(id = "org.kneelawk.kportals", name = "KPortals", version = "0.0.1-SNAPSHOT", description = "A sponge plugin for survival based teleportation")
+@Plugin(id = "org.kneelawk.kportals", name = "KPortals",
+		version = "0.0.1-SNAPSHOT",
+		description = "A sponge plugin for survival based teleportation")
 public class KPortals {
 	private static KPortals instance;
 
@@ -35,6 +38,7 @@ public class KPortals {
 	@Listener
 	public void init(GameInitializationEvent event) {
 		KPLog.info("Init KPortals");
+		KPCommands.init();
 	}
 
 	@Listener
