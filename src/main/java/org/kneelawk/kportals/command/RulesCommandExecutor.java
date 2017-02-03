@@ -17,10 +17,10 @@ public class RulesCommandExecutor implements CommandExecutor {
 		if (src instanceof Player) {
 			Player player = (Player) src;
 			Inventory test = Inventory.builder().build(KPortals.getInstance());
+			return CommandResult.success();
 		} else {
 			src.sendMessage(Text.of("You must be a player to use the rulse gui"));
 			return CommandResult.empty();
 		}
-		return null;
 	}
 }
